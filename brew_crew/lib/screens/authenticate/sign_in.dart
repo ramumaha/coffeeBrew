@@ -1,3 +1,5 @@
+import 'package:brew_crew/screens/authenticate/authenticate.dart';
+import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
+   final AuthService _auth=new AuthService();
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -21,6 +24,13 @@ class _SignInState extends State<SignIn> {
         child:RaisedButton(
           child:Text('Sign in Anon'),
           onPressed: ()async{
+           dynamic result= await _auth.signInAnon();
+           if(result==null){
+             print('no sign in');
+           }else{
+             print(result);
+           }
+
 
           },
         )
